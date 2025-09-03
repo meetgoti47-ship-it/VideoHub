@@ -1,20 +1,33 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>React Video Uploader App</title>
-    <!-- Tailwind CSS for styling -->
+    <title>StreamVerse</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React and ReactDOM libraries -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <!-- Babel to transpile JSX in the browser -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body class="bg-gray-900">
-    <!-- The root element where the React app will be mounted -->
+<body class="bg-slate-900 font-sans">
     <div id="root"></div>
+
+    <script src="config.js"></script>
 
     <script type="text/babel">
         // Using React hooks from the global React object
@@ -43,7 +56,7 @@
             {
                 id: 1,
                 name: "Exploring the Mountains.mp4",
-                url: "mock://mountains.mp4", // Using mock URL for placeholder
+                url: "mock://mountains.mp4",
                 uploader: "Alice",
                 likes: 15,
                 comments: [
@@ -54,7 +67,7 @@
             {
                 id: 2,
                 name: "Ocean Waves.mp4",
-                url: "mock://ocean.mp4", // Using mock URL for placeholder
+                url: "mock://ocean.mp4",
                 uploader: "Bob",
                 likes: 32,
                 comments: [
@@ -85,43 +98,43 @@
             };
 
             return (
-                <div className="min-h-screen flex items-center justify-center bg-gray-900">
-                    <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl w-full max-w-md">
+                <div className="min-h-screen flex items-center justify-center bg-slate-900 p-4">
+                    <div className="bg-slate-800 p-8 rounded-2xl shadow-2xl w-full max-w-md border border-slate-700">
                         <div className="flex items-center justify-center mb-6 gap-3">
-                            <VideoIcon className="w-10 h-10 text-indigo-400" />
-                            <h1 className="text-3xl font-bold text-white">Video Hub</h1>
+                            <VideoIcon className="w-10 h-10 text-cyan-400" />
+                            <h1 className="text-3xl font-bold text-white">StreamVerse</h1>
                         </div>
                         <h2 className="text-2xl font-bold text-white text-center mb-2">{isLogin ? 'Login' : 'Sign Up'}</h2>
-                        <p className="text-gray-400 text-center mb-6">Welcome! Please enter your details.</p>
+                        <p className="text-slate-400 text-center mb-6">Welcome! Please enter your details.</p>
                         <form onSubmit={handleSubmit}>
                             {error && <p className="bg-red-500/20 text-red-400 p-3 rounded-lg mb-4 text-center">{error}</p>}
                             <div className="mb-4">
-                                <label className="block text-gray-300 mb-2" htmlFor="username">Username</label>
+                                <label className="block text-slate-300 mb-2" htmlFor="username">Username</label>
                                 <input
                                     type="text"
                                     id="username"
                                     value={username}
                                     onChange={(e) => setUsername(e.target.value)}
-                                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
                                 />
                             </div>
                             <div className="mb-6">
-                                <label className="block text-gray-300 mb-2" htmlFor="password">Password</label>
+                                <label className="block text-slate-300 mb-2" htmlFor="password">Password</label>
                                 <input
                                     type="password"
                                     id="password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className="w-full bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                    className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
                                 />
                             </div>
-                            <button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300">
+                            <button type="submit" className="w-full bg-gradient-to-br from-cyan-500 to-cyan-700 hover:from-cyan-600 hover:to-cyan-800 text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 shadow-lg shadow-cyan-500/20">
                                 {isLogin ? 'Login' : 'Sign Up'}
                             </button>
                         </form>
-                        <p className="text-center text-gray-400 mt-6">
+                        <p className="text-center text-slate-400 mt-6">
                             {isLogin ? "Don't have an account?" : "Already have an account?"}
-                            <button onClick={() => { setIsLogin(!isLogin); setError(''); }} className="text-indigo-400 hover:underline ml-2 font-semibold">
+                            <button onClick={() => { setIsLogin(!isLogin); setError(''); }} className="text-cyan-400 hover:underline ml-2 font-semibold">
                                 {isLogin ? 'Sign Up' : 'Login'}
                             </button>
                         </p>
@@ -129,9 +142,13 @@
                 </div>
             );
         }
-        
+
         // --- Main App Component ---
         function App() {
+          // You can now access your API keys like this:
+          // console.log("Firebase Project ID:", firebaseConfig.projectId);
+          // console.log("Cloudinary Cloud Name:", cloudinaryConfig.cloudName);
+
           // State management
           const [users, setUsers] = useState([{username: 'Alice', password: 'password'}, {username: 'Bob', password: 'password'}]);
           const [currentUser, setCurrentUser] = useState(null);
@@ -239,9 +256,8 @@
           const handleDeleteVideo = (videoId) => {
               const videoToDelete = videos.find(v => v.id === videoId);
               if (videoToDelete.uploader !== currentUser.username) {
-                  // This is a safeguard, the UI should prevent this.
                   const modal = document.createElement('div');
-                  modal.innerHTML = `<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"><div class="bg-gray-800 p-6 rounded-lg text-white">You can only delete your own videos.</div></div>`;
+                  modal.innerHTML = `<div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"><div class="bg-slate-800 p-6 rounded-lg text-white">You can only delete your own videos.</div></div>`;
                   document.body.appendChild(modal);
                   setTimeout(() => document.body.removeChild(modal), 2000);
                   return;
@@ -261,23 +277,23 @@
           }
 
           return (
-            <div className="bg-gray-900 text-white min-h-screen font-sans flex flex-col" style={{ height: '100vh' }}>
+            <div className="bg-slate-900 text-white min-h-screen font-sans flex flex-col" style={{ height: '100vh' }}>
               {/* Header */}
-              <header className="bg-gray-800/50 backdrop-blur-sm shadow-lg p-4 flex items-center justify-between z-10 flex-shrink-0">
+              <header className="bg-slate-900/70 backdrop-blur-sm p-4 flex items-center justify-between z-10 flex-shrink-0 border-b border-slate-800">
                 <div className="flex items-center gap-3">
-                  <VideoIcon className="w-8 h-8 text-indigo-400" />
-                  <h1 className="text-2xl font-bold tracking-wider">Video Hub</h1>
+                  <VideoIcon className="w-8 h-8 text-cyan-400" />
+                  <h1 className="text-2xl font-bold tracking-wider">StreamVerse</h1>
                 </div>
                 <div className="flex items-center gap-4">
-                    <span className="text-gray-300">Welcome, <span className="font-bold text-indigo-400">{currentUser.username}</span></span>
+                    <span className="text-slate-300">Welcome, <span className="font-bold text-cyan-400">{currentUser.username}</span></span>
                     <button
                       onClick={handleUploadClick}
-                      className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition-transform duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75"
+                      className="flex items-center gap-2 bg-gradient-to-br from-cyan-500 to-cyan-700 hover:from-cyan-600 hover:to-cyan-800 text-white font-semibold px-4 py-2 rounded-lg shadow-md transition-transform duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-opacity-75"
                     >
                       <UploadIcon />
                       <span>Upload</span>
                     </button>
-                    <button onClick={handleLogout} className="p-2 rounded-full hover:bg-gray-700 transition-colors" title="Logout">
+                    <button onClick={handleLogout} className="p-2 rounded-full hover:bg-slate-700 transition-colors" title="Logout">
                         <LogoutIcon />
                     </button>
                 </div>
@@ -287,17 +303,17 @@
               <main className="flex-grow flex flex-col md:flex-row p-4 gap-4 overflow-hidden">
                 {/* Video Player & Details Section */}
                 <div className="flex-grow md:w-2/3 flex flex-col gap-4 overflow-hidden">
-                    <div className="flex-shrink-0 bg-black rounded-xl shadow-2xl overflow-hidden aspect-video">
-                      {currentVideo ? (
-                          currentVideo.url.startsWith('mock://') ? (
-                            <div className="w-full h-full flex items-center justify-center bg-gray-800">
-                                <div className="text-center text-gray-500">
+                  <div className="flex-shrink-0 bg-black rounded-xl shadow-2xl overflow-hidden aspect-video border border-slate-800">
+                    {currentVideo ? (
+                        currentVideo.url.startsWith('mock://') ? (
+                            <div className="w-full h-full flex items-center justify-center bg-slate-800">
+                                <div className="text-center text-slate-500">
                                     <VideoIcon className="w-24 h-24 mx-auto mb-4" />
                                     <p className="text-xl font-semibold">{currentVideo.name}</p>
                                     <p>(This is a mock video for UI demonstration)</p>
                                 </div>
                             </div>
-                          ) : (
+                        ) : (
                             <video
                                 ref={videoPlayerRef}
                                 key={currentVideo.url}
@@ -308,68 +324,68 @@
                                 onPause={handleOnPause}
                                 autoPlay
                             />
-                          )
-                      ) : (
-                        <div className="w-full h-full flex flex-col items-center justify-center text-gray-500 bg-gray-800/50 p-8 text-center">
-                          <SadFaceIcon className="w-24 h-24 mb-4 text-gray-600"/>
-                          <h2 className="text-2xl font-semibold mb-2">No Video Selected</h2>
-                          <p>Upload a video or select one from the playlist.</p>
-                        </div>
-                      )}
-                    </div>
-                    
-                    {/* Video Details & Actions */}
-                    {currentVideo && (
-                        <div className="bg-gray-800/50 rounded-xl shadow-lg p-4 overflow-y-auto">
-                           <h2 className="text-xl font-bold truncate">{currentVideo.name}</h2>
-                           <p className="text-sm text-gray-400 mb-4 flex items-center gap-2"><UserIcon className="w-4 h-4" /> {currentVideo.uploader}</p>
-                           <div className="flex items-center justify-between mb-4">
-                                <div className="flex items-center gap-4">
-                                    <button onClick={() => handleLike(currentVideo.id)} className="flex items-center gap-2 text-gray-300 hover:text-red-500 transition-colors">
-                                        <LikeIcon /> {currentVideo.likes} Likes
-                                    </button>
-                                    <div className="flex items-center gap-2 text-gray-300">
-                                        <CommentIcon /> {currentVideo.comments.length} Comments
-                                    </div>
-                                </div>
-                                <div className="relative">
-                                    <select className="bg-gray-700 border border-gray-600 rounded-lg px-3 py-1.5 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 appearance-none">
-                                        <option>1080p</option>
-                                        <option>720p</option>
-                                        <option>480p</option>
-                                    </select>
-                                </div>
-                           </div>
-
-                           {/* Comments Section */}
-                           <div className="space-y-3">
-                               <h3 className="text-lg font-semibold border-t border-gray-700 pt-3">Comments</h3>
-                               <div className="max-h-40 overflow-y-auto space-y-3 pr-2">
-                                   {currentVideo.comments.length > 0 ? currentVideo.comments.map((comment, index) => (
-                                       <div key={index} className="bg-gray-700/50 p-2 rounded-lg">
-                                           <p className="font-bold text-indigo-400 text-sm">{comment.user}</p>
-                                           <p className="text-gray-300">{comment.text}</p>
-                                       </div>
-                                   )) : <p className="text-gray-500">No comments yet.</p>}
-                               </div>
-                               <div className="flex gap-2 pt-2">
-                                   <input 
-                                       type="text"
-                                       value={commentText}
-                                       onChange={(e) => setCommentText(e.target.value)}
-                                       placeholder="Add a comment..."
-                                       className="flex-grow bg-gray-700 border border-gray-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                   />
-                                   <button onClick={() => handleAddComment(currentVideo.id)} className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-4 py-2 rounded-lg">Send</button>
-                               </div>
-                           </div>
-                        </div>
+                        )
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center text-slate-500 bg-slate-800 p-8 text-center">
+                        <SadFaceIcon className="w-24 h-24 mb-4 text-slate-600"/>
+                        <h2 className="text-2xl font-semibold mb-2">No Video Selected</h2>
+                        <p>Upload a video or select one from the playlist.</p>
+                      </div>
                     )}
+                  </div>
+                  
+                  {/* Video Details & Actions */}
+                  {currentVideo && (
+                      <div className="bg-slate-800 border border-slate-700 rounded-xl shadow-lg p-4 overflow-y-auto">
+                         <h2 className="text-xl font-bold truncate">{currentVideo.name}</h2>
+                         <p className="text-sm text-slate-400 mb-4 flex items-center gap-2"><UserIcon className="w-4 h-4" /> {currentVideo.uploader}</p>
+                         <div className="flex items-center justify-between mb-4">
+                              <div className="flex items-center gap-4">
+                                  <button onClick={() => handleLike(currentVideo.id)} className="flex items-center gap-2 text-slate-300 hover:text-red-500 transition-colors">
+                                      <LikeIcon /> {currentVideo.likes} Likes
+                                  </button>
+                                  <div className="flex items-center gap-2 text-slate-300">
+                                      <CommentIcon /> {currentVideo.comments.length} Comments
+                                  </div>
+                              </div>
+                              <div className="relative">
+                                  <select className="bg-slate-700 border border-slate-600 rounded-lg px-3 py-1.5 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 appearance-none">
+                                      <option>1080p</option>
+                                      <option>720p</option>
+                                      <option>480p</option>
+                                  </select>
+                              </div>
+                         </div>
+
+                         {/* Comments Section */}
+                         <div className="space-y-3">
+                              <h3 className="text-lg font-semibold border-t border-slate-700 pt-3">Comments</h3>
+                              <div className="max-h-40 overflow-y-auto space-y-3 pr-2">
+                                 {currentVideo.comments.length > 0 ? currentVideo.comments.map((comment, index) => (
+                                     <div key={index} className="bg-slate-700/50 p-2 rounded-lg">
+                                         <p className="font-bold text-cyan-400 text-sm">{comment.user}</p>
+                                         <p className="text-slate-300">{comment.text}</p>
+                                     </div>
+                                 )) : <p className="text-slate-500">No comments yet.</p>}
+                              </div>
+                              <div className="flex gap-2 pt-2">
+                                 <input 
+                                     type="text"
+                                     value={commentText}
+                                     onChange={(e) => setCommentText(e.target.value)}
+                                     placeholder="Add a comment..."
+                                     className="flex-grow bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                                 />
+                                 <button onClick={() => handleAddComment(currentVideo.id)} className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-4 py-2 rounded-lg">Send</button>
+                              </div>
+                         </div>
+                      </div>
+                  )}
                 </div>
 
                 {/* Playlist Section */}
-                <aside className="w-full md:w-1/3 flex flex-col bg-gray-800/50 rounded-xl shadow-lg overflow-hidden">
-                  <h2 className="text-xl font-semibold p-4 border-b border-gray-700">Playlist ({videos.length})</h2>
+                <aside className="w-full md:w-1/3 flex flex-col bg-slate-800 border border-slate-700 rounded-xl shadow-lg overflow-hidden">
+                  <h2 className="text-xl font-semibold p-4 border-b border-slate-700">Playlist ({videos.length})</h2>
                   <div className="flex-grow overflow-y-auto p-2 space-y-2">
                     {videos.length > 0 ? (
                       videos.map((video) => (
@@ -378,23 +394,23 @@
                           onClick={() => handleVideoSelect(video)}
                           className={`flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all duration-200 group ${
                             currentVideo?.id === video.id
-                              ? 'bg-indigo-600 shadow-lg'
-                              : 'bg-gray-700/50 hover:bg-gray-700 hover:shadow-md'
+                              ? 'bg-cyan-600 shadow-lg'
+                              : 'bg-slate-700/50 hover:bg-slate-700 hover:shadow-md'
                           }`}
                         >
-                          <div className="flex-shrink-0 bg-gray-900 rounded-md w-12 h-12 flex items-center justify-center">
-                             <PlayIcon className={`w-6 h-6 ${currentVideo?.id === video.id ? 'text-indigo-300' : 'text-gray-500'}`} />
+                          <div className="flex-shrink-0 bg-slate-900 rounded-md w-12 h-12 flex items-center justify-center">
+                             <PlayIcon className={`w-6 h-6 ${currentVideo?.id === video.id ? 'text-cyan-300' : 'text-slate-500'}`} />
                           </div>
                           <div className="flex-grow overflow-hidden">
                             <p className="truncate font-medium text-sm">{video.name}</p>
-                            <p className="text-xs text-gray-400 flex items-center gap-1"><UserIcon className="w-3 h-3" /> {video.uploader}</p>
+                            <p className="text-xs text-slate-400 flex items-center gap-1"><UserIcon className="w-3 h-3" /> {video.uploader}</p>
                           </div>
                           {currentUser.username === video.uploader && (
                             <div className="flex items-center flex-shrink-0">
-                                <span className="text-xs bg-indigo-500/50 text-indigo-200 px-2 py-0.5 rounded-full mr-2">Me</span>
+                                <span className="text-xs bg-cyan-500/30 text-cyan-300 px-2 py-0.5 rounded-full mr-2">Me</span>
                                 <button 
                                     onClick={(e) => { e.stopPropagation(); handleDeleteVideo(video.id); }} 
-                                    className="p-2 rounded-full text-gray-400 hover:bg-red-500/50 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="p-2 rounded-full text-slate-400 hover:bg-red-500/50 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity"
                                     title="Delete video"
                                 >
                                     <DeleteIcon className="w-5 h-5" />
@@ -404,7 +420,7 @@
                         </div>
                       ))
                     ) : (
-                      <div className="text-center text-gray-500 p-8">
+                      <div className="text-center text-slate-500 p-8">
                         <p>Your uploaded videos will appear here.</p>
                       </div>
                     )}
