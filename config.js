@@ -3,18 +3,18 @@
 // For production, these should be loaded from secure environment variables on a backend server.
 
 const firebaseConfig = {
-    apiKey: "AIzaSyC4VVwJcMdKlZV3eEXvJ5RKHMt-kUq_fnI",
-    authDomain: "videohubmeet.firebaseapp.com",
-    projectId: "videohubmeet",
-    storageBucket: "videohubmeet.firebasestorage.app",
-    messagingSenderId: "800957297857",
-    appId: "1:800957297857:web:22130a05980c6f87979040"
+  apiKey: "AIzaSyBKokoVhxRf37agssBBvaMLfGdkusNNSsU",
+  authDomain: "streamverse-b8e76.firebaseapp.com",
+  projectId: "streamverse-b8e76",
+  storageBucket: "streamverse-b8e76.firebasestorage.app",
+  messagingSenderId: "468705709242",
+  appId: "1:468705709242:web:f46a0e53e5a4e90d4a8683"
 };
 
 const cloudinaryConfig = {
-    cloudName: "dirg3ibdg",
-    apiKey: "846372637261926",
-    apiSecret: "LIzsoWo4CpZLat6aaPdGkUkVquM"
+    cloudName: "dx3ovohb4",
+    apiKey: "572875668873198",
+    apiSecret: "KNnKJzFzhfuuDtpUuB-vURDRBY8"
 };
 
 // You would typically export these from a backend file like this
